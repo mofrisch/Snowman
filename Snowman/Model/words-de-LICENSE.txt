@@ -1,0 +1,31 @@
+Snowman – Herkunft und Lizenz von words-de.txt
+
+Grundformen: Mitwirkende des deutschsprachigen Wiktionarys.
+https://de.wiktionary.org/
+Datenstand 1. November 2026, aufbereitet mit Wiktextract von Kaikki.org.
+https://kaikki.org/dewiktionary/rawdata.html
+https://kaikki.org/dewiktionary/index.html#copyright-and-license
+
+Worthäufigkeiten: FrequencyWords (Hermit Dave), Deutsch, Ausgabe 2018.
+https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/de/de_full.txt
+FrequencyWords nutzt OpenSubtitles. Siehe https://www.opensubtitles.org/
+und Lison, Tiedemann und Kouylekov: OpenSubtitles2018 (LREC 2018).
+https://aclanthology.org/L18-1275/
+
+Bearbeitung für Snowman: Auswahl aus den deutschen Grundformeinträgen
+mit eigenständiger Bedeutung. Der Filter prüft die Originalschreibweise
+vor der Umschrift. Er schließt Eigennamen, markierte Abkürzungen und
+typische Kürzelschreibweisen sowie geläufige Schreibvarianten einzelner
+Kürzel aus. Normale Wörter mit einer eigenständigen Bedeutung bleiben
+zulässig, auch wenn es ein gleich geschriebenes Kürzel gibt. Ebenso
+ausgeschlossen sind Einträge, die ausschließlich Flexionsformen,
+Schreibvarianten oder veraltete Formen angeben.
+
+Eindeutig zuordenbare Flexionsformen flossen in die Häufigkeit der
+jeweiligen Grundform ein. Die Spielwörter stehen in Großbuchstaben
+(Ä → AE, Ö → OE, Ü → UE, ß/ẞ → SS) und enthalten vier bis zehn Buchstaben
+von A bis Z. Gleiche Spielschreibungen wurden zusammengefasst. Die 30.000
+häufigsten Einträge wurden alphabetisch sortiert.
+
+Lizenz der bearbeiteten Wortliste: CC BY-SA 4.0 International.
+https://creativecommons.org/licenses/by-sa/4.0/

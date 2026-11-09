@@ -7,12 +7,15 @@
 import SwiftUI
 
 struct Game {
+    private static let englishWords = loadWords(for: .english)
+    private static let germanWords = loadWords(for: .german)
+
+    let language: GameLanguage
     var incorrectGuessCount = 0
-    var statusText = "Enter a letter to start the game."
-    var word = "SNOWMAN"
+    var word: String
     var guesses: [String] = []
     var gameStatus = GameStatus.inProgress
-    
+
     var letters: [Letter] {
         var lettersArray: [Letter] = []
         for (index, char) in word.enumerated() {
@@ -32,13 +35,10 @@ struct Game {
     }
     
     mutating func processGuess(letter: String) {
-        guard
-            let newGuess = letter.first?.uppercased(),
-            newGuess >= "A" && newGuess <= "Z",
-            !guesses.contains(newGuess)
-        else {
-            return
-        }
+        guard let letter = letter.first, Self.isPlayableLetter(letter) else { return }
+
+        let newGuess = letter.uppercased()
+        guard !guesses.contains(newGuess) else { return }
         
         if !word.contains(newGuess) && incorrectGuessCount < 7 {
             incorrectGuessCount += 1
@@ -53,12 +53,31 @@ struct Game {
         }
         if unmatchedLetters.isEmpty {
             gameStatus = .won
-            statusText = "HOORAY!!!! YOU WON!"
         } else if incorrectGuessCount == 7 {
             gameStatus = .lost
-            statusText = "You lost. Better luck next time."
-        } else {
-            statusText = "Enter another letter to guess the word."
         }
+    }
+
+    private static func isPlayableLetter(_ letter: Character) -> Bool {
+        letter.isASCII && letter.isLetter
+    }
+
+    private static func loadWords(for language: GameLanguage) -> [String] {
+        guard
+            let url = Bundle.main.url(forResource: language.wordListName, withExtension: "txt"),
+            let wordsList = try? String(contentsOf: url, encoding: .utf8)
+        else {
+            return []
+        }
+
+        return wordsList.split(whereSeparator: \.isNewline)
+            .filter { (4...10).contains($0.count) && $0.allSatisfy(isPlayableLetter) }
+            .map { $0.uppercased() }
+    }
+
+    init(language: GameLanguage = .system) {
+        self.language = language
+        let words = language == .german ? Self.germanWords : Self.englishWords
+        word = words.randomElement() ?? language.fallbackWord
     }
 }

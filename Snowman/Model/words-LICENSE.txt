@@ -1,0 +1,36 @@
+Snowman – sources and license for words.txt
+
+Frequency data: FrequencyWords by Hermit Dave, English, 2018 edition.
+https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/en/en_full.txt
+https://github.com/hermitdave/FrequencyWords#license
+FrequencyWords uses OpenSubtitles. See Lison, Tiedemann and Kouylekov,
+OpenSubtitles2018 (LREC 2018), https://aclanthology.org/L18-1275/
+
+English headwords and inflections: English Wiktionary contributors.
+Wiktionary dump of 1 October 2026, extracted by Kaikki.org with Wiktextract.
+https://kaikki.org/dictionary/English/
+https://kaikki.org/dictionary/index.html#copyright-and-license
+
+Additional headword check for spellings also used as inflections or abbreviations:
+Open English WordNet 2025, by the Open English WordNet Team (CC BY 4.0),
+derived from Princeton University WordNet under the WordNet License.
+https://github.com/globalwordnet/english-wordnet/releases/tag/2025-edition
+https://github.com/globalwordnet/english-wordnet/blob/main/LICENSE.md
+https://github.com/globalwordnet/english-wordnet/blob/main/WNDB_License.txt
+
+Snowman selection: four to ten ASCII letters and an independent English
+headword sense. The filter checks the original dictionary spelling before
+converting to lowercase. It excludes abbreviations, all-caps and mixed-case
+headwords, and senses marked as rare, obsolete, dialectal or nonstandard.
+Title-case words and spellings also used as inflections require matching
+Open English WordNet entries. If the spelling also matches an uppercase
+abbreviation, the filter requires an independent lowercase WordNet entry
+or a lowercase function-word sense in Wiktionary.
+
+The score is the subtitle count of the headword plus counts of inflections
+with a single dictionary target and no independent headword retained by the
+filter. Frequency ties are broken alphabetically. The 30,000 highest scoring
+words are stored in uppercase alphabetical order.
+
+License for the adapted word list: CC BY-SA 4.0 International.
+https://creativecommons.org/licenses/by-sa/4.0/

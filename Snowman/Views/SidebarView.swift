@@ -10,6 +10,8 @@ import SwiftUI
 struct SidebarView: View {
     var body: some View {
         Text("Games will be listed here")
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 12)
     }
 }
 

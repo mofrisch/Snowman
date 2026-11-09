@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct GameView: View {
-    @State var game = Game()
+    private let language: GameLanguage
+    @State private var game: Game
+
+    init(language: GameLanguage = .system) {
+        self.language = language
+        _game = State(initialValue: Game(language: language))
+    }
     
     var body: some View {
         HStack {
@@ -22,7 +28,7 @@ struct GameView: View {
             VStack(spacing: 30) {
                 Spacer()
                 
-                Text(game.statusText)
+                statusText
                     .font(.title2)
                 
                 LettersView(letters: game.letters)
@@ -31,7 +37,7 @@ struct GameView: View {
                 Spacer()
                 
                 Button("New Game") {
-                    print("Starting new game.")
+                    game = Game(language: game.language)
                 }
                 .keyboardShortcut(.defaultAction)
                 .opacity(game.gameStatus == .inProgress ? 0 : 1)
@@ -46,7 +52,22 @@ struct GameView: View {
             
             Spacer()
         }
-        
+        .onChange(of: language) { _, language in
+            game = Game(language: language)
+        }
+    }
+
+    private var statusText: Text {
+        switch game.gameStatus {
+        case .inProgress where game.guesses.isEmpty:
+            Text("Enter a letter to start the game.")
+        case .inProgress:
+            Text("Enter another letter to guess the word.")
+        case .won:
+            Text("HOORAY!!!! YOU WON!")
+        case .lost:
+            Text("You lost. Better luck next time.")
+        }
     }
 }
 
