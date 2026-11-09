@@ -7,12 +7,33 @@
 
 import SwiftUI
 
+let guesses = ["E", "S", "R", "X"]
+
 struct GuessesView: View {
+    @Binding var game: Game
+    @State var nextGuess = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                Text("Letters used:")
+                Text(game.guesses.joined(separator: ", "))
+            }
+
+            LabeledContent("Guess a letter:") {
+                TextField("", text: $nextGuess)
+                    .frame(width: 50)
+                    .textFieldStyle(.roundedBorder)
+                    .disabled(game.gameStatus != .inProgress)
+                    .onChange(of: nextGuess) { _, newValue in
+                        game.processGuess(letter: newValue)
+                        nextGuess = ""
+                    }
+            }
+        }
     }
 }
 
 #Preview {
-    GuessesView()
+    @Previewable @State var game = Game()
+    GuessesView(game: $game)
 }

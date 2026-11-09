@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct LettersView: View {
+    let letters: [Letter]
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            ForEach(letters) { letter in
+                Text(letter.char)
+                .font(.title)
+                .bold()
+                .frame(width: 20, height: 20)
+                .padding()
+                .overlay {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(lineWidth: 2)
+                        .foregroundStyle(letter.color)
+                        .padding(2)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    LettersView()
+    LettersView(letters: Game().letters)
 }
